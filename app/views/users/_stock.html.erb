@@ -1,0 +1,24 @@
+<% if (@stock) %>
+  <div class="row d-flex justify-content-center m-0">
+    <div class="col-6">
+      <div class="stock-info card py-4 shadow">
+        <div class="text-center">
+          <h1 class="display-3"><%= @stock.name %></h1>
+        </div>
+        <div class="text-center mb-5">
+          <hr class="w-50">
+        </div>
+        <div class="row m-0">
+          <div class="col-6 d-flex justify-content-center align-items-end">
+            <p class="mb-3 mr-1"><u>Price (USD):</u></p>
+            <h1 class="display-4"><%= @stock.last_price %></h1>
+          </div>
+          <div class="col-6 d-flex justify-content-center align-items-end">
+            <p class="mb-3 mr-1"><u>Ticker symbol:</u></p>
+            <h1 class="display-4"><%= @stock.ticker %></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
