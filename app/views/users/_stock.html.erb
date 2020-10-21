@@ -1,23 +1,26 @@
 <% if (@stock) %>
-  <div class="row d-flex justify-content-center m-0">
-    <div class="col-6">
-      <div class="stock-info card py-4 shadow">
-        <div class="text-center">
-          <h1 class="display-3"><%= @stock.name %></h1>
-        </div>
-        <div class="text-center mb-5">
-          <hr class="w-50">
-        </div>
-        <div class="row m-0">
-          <div class="col-6 d-flex justify-content-center align-items-end">
-            <p class="mb-3 mr-1"><u>Price (USD):</u></p>
-            <h1 class="display-4"><%= @stock.last_price %></h1>
+  <div class="row d-flex justify-content-center m-0 mt-3">
+    <div class="col-6 mb-2">
+      <div class="alert shadow bg-light border d-flex justify-content-between">
+        <div class="d-flex">
+          <div>
+            <b>Name:</b>
+            <span><%= @stock.name %></span>
           </div>
-          <div class="col-6 d-flex justify-content-center align-items-end">
-            <p class="mb-3 mr-1"><u>Ticker symbol:</u></p>
-            <h1 class="display-4"><%= @stock.ticker %></h1>
+          <div class="ml-2">
+            <b>Price:</b>
+            <span><%= @stock.last_price %></span>
+          </div>
+          <div class="ml-2">
+            <b>Ticker symbol:</b>
+            <span><%= @stock.ticker %></span>
           </div>
         </div>
+        <% if (!current_user.stocks.where(ticker: @stock.ticker).first) %>
+          <%= link_to 'ADD', user_stocks_path(user: current_user, ticker: @stock.ticker), method: :create, class: 'btn btn-success py-0' %>
+        <% else %>
+          <button class="added btn py-0" disabled>ADDED</button>
+        <% end %>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 
 <h3 class="text-center mb-4">Search stock value</h3>
 
-<div class="row d-flex justify-content-center m-0 mb-4">
+<div class="row d-flex justify-content-center m-0">
   <div class="col-6">
     <%= form_tag search_stock_path, method: :get, remote: true do %>
       <div class="input-group mb-3">
@@ -20,3 +20,30 @@
 </div>
 
 <div class="stock"></div>
+
+<% if (@tracked_stocks.length > 0) %>
+  <div class="row m-0 mb-5 mt-2 d-flex justify-content-center">
+    <div class="col-6 pr-0 overflow-auto" style="max-height: 260.8px;">
+      <table class="table table-hover overflow-hidden">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Ticker</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tracked_stocks.each do | ts | %>
+            <tr>
+              <th scope="row"><%= ts.ticker %></th>
+              <td><%= ts.name %></td>
+              <td><%= ts.last_price %></td>
+              <td>@mdo</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
