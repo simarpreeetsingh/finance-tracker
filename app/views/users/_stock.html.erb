@@ -16,10 +16,16 @@
             <span><%= @stock.ticker %></span>
           </div>
         </div>
-        <% if (!current_user.stocks.where(ticker: @stock.ticker).first) %>
+        <% if (current_user.stocks.length < 10 && !current_user.stocks.where(ticker: @stock.ticker).first) %>
           <%= link_to 'ADD', user_stocks_path(user: current_user, ticker: @stock.ticker), method: :create, class: 'btn btn-success py-0' %>
         <% else %>
-          <button class="added btn py-0" disabled>ADDED</button>
+          <button class="added btn py-0" disabled>
+            <% if (current_user.stocks.length === 10) %>
+              ALREADY TRACKING 10 STOCKS
+            <% else %>
+              ADDED
+            <% end %>
+          </button>
         <% end %>
       </div>
     </div>

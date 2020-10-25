@@ -22,7 +22,7 @@
 <div class="stock"></div>
 
 <% if (@tracked_stocks.length > 0) %>
-  <div class="row m-0 mb-5 mt-2 d-flex justify-content-center">
+  <div class="row m-0 mt-3 mb-5 mt-2 d-flex justify-content-center">
     <div class="col-6 pr-0 overflow-auto" style="max-height: 260.8px;">
       <table class="table table-hover overflow-hidden">
         <thead class="thead-dark">
@@ -39,7 +39,7 @@
               <th scope="row"><%= ts.ticker %></th>
               <td><%= ts.name %></td>
               <td><%= ts.last_price %></td>
-              <td>@mdo</td>
+              <td><%= link_to 'REMOVE', user_stock_path(ts), method: :delete, class: 'btn btn-warning py-0', data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>
